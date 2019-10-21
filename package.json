@@ -1,0 +1,33 @@
+{
+    "name": "image-grid-accordion",
+    "version": "0.1.1",
+    "description": "基于Vue的栅格手风琴效果",
+    "main": "lib/imagegridaccordion.umd.min.js",
+    "keywords": "image grid accordion",
+    "private": false,
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint",
+        "lib": "vue-cli-service build --target lib --name imagegridaccordion --dest lib packages/index.js"
+    },
+    "dependencies": {
+        "core-js": "^2.6.5",
+        "vue": "^2.6.10"
+    },
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "^3.12.0",
+        "@vue/cli-plugin-eslint": "^3.12.0",
+        "@vue/cli-service": "^3.12.0",
+        "babel-eslint": "^10.0.1",
+        "eslint": "^5.16.0",
+        "eslint-config-alloy": "^3.0.0",
+        "eslint-plugin-vue": "^5.2.3",
+        "pug": "^2.0.4",
+        "pug-plain-loader": "^1.0.0",
+        "stylus": "^0.54.5",
+        "stylus-loader": "^3.0.2",
+        "vue-eslint-parser": "^5.0.0",
+        "vue-template-compiler": "^2.6.10"
+    }
+}
