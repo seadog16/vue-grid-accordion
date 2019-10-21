@@ -7,7 +7,7 @@ module.exports = {
             filename: 'index.html',
         },
     },
-    publicPath: './',
+    publicPath: 'https://seadog16.github.io/img-grid-accordion/dist/',
     // 扩展 webpack 配置，使 packages 加入编译
     chainWebpack: config => {
         config.module
