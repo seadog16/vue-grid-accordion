@@ -3,8 +3,6 @@ module.exports = {
     pages: {
         index: {
             entry: 'examples/main.js',
-            // template: 'public/index.html',
-            // filename: 'index.html',
         },
     },
     publicPath: process.env.NODE_ENV === 'production'
