@@ -16,6 +16,7 @@ yarn-error.log*
 .idea
 .vscode
 .npmignore
+package-lock.json
 *.suo
 *.ntvs*
 *.njsproj
