@@ -18,6 +18,7 @@
         "lib": "vue-cli-service build --target lib --name imagegridaccordion --dest lib packages/index.js"
     },
     "dependencies": {
+        "@tweenjs/tween.js": "^18.3.1",
         "core-js": "^2.6.5",
         "vue": "^2.6.10"
     },

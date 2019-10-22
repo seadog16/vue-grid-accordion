@@ -9,7 +9,7 @@
 </template>
 
 <script>
-
+import TWEEN from '@tweenjs/tween.js';
 export default {
     name: 'vGridAccordion',
     props: {
@@ -146,4 +146,6 @@ export default {
         position absolute
         background-position center
         transition-duration 500ms
+        transition-timing-function ease-in-out
+        transition-property width, height, left, top
 </style>

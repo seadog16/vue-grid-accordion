@@ -1,5 +1,6 @@
 module.exports = {
     productionSourceMap: false,
+    // 样式合并到js里
     css: {
         extract: false,
     },
