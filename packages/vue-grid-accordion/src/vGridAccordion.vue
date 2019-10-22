@@ -1,10 +1,8 @@
 <template lang="pug">
     .gridWrap(
-        style="width:100%;height:100%;position:relative;"
         @mouseleave="leaveHandler"
         :style="{width:width+'px',height:height+'px'}")
         .img(
-            style="position:absolute;background-position:center;transition-duration:500ms;"
             @mouseenter="() => enterHandler(index)"
             v-for="(img, index) in images"
             :style="style(img, index)")
@@ -13,7 +11,7 @@
 <script>
 
 export default {
-    name: 'ImageGridAccordion',
+    name: 'vGridAccordion',
     props: {
         width: {
             type: Number,
@@ -137,3 +135,15 @@ export default {
     }
 }
 </script>
+
+<style scoped lang="stylus">
+.gridWrap
+    width 100%
+    height 100%
+    position relative
+
+    .img
+        position absolute
+        background-position center
+        transition-duration 500ms
+</style>

@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import App from './App.vue';
-import ImageGridAccordion from './../packages/index'
+import vGridAccordion from '../packages';
 Vue.config.productionTip = false;
-Vue.use(ImageGridAccordion);
+Vue.use(vGridAccordion);
 new Vue({
     render: h => h(App),
 }).$mount('#app');

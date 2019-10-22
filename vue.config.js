@@ -1,4 +1,8 @@
 module.exports = {
+    productionSourceMap: false,
+    css: {
+        extract: false,
+    },
     // 修改 src 为 examples
     pages: {
         index: {
@@ -6,7 +10,7 @@ module.exports = {
         },
     },
     publicPath: process.env.NODE_ENV === 'production'
-        ? 'https://seadog16.github.io/img-grid-accordion/dist/'
+        ? 'https://seadog16.github.io/vue-grid-accordion/dist/'
         : '/',
     // 扩展 webpack 配置，使 packages 加入编译
     chainWebpack: config => {

@@ -1,7 +1,7 @@
-import ImageGridAccordion from './image-grid-accordion';
+import vGridAccordion from './vue-grid-accordion';
 
 const components = [
-    ImageGridAccordion
+    vGridAccordion
 ];
 
 const install = function (Vue) {
@@ -15,5 +15,5 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 export default {
     install,
-    ImageGridAccordion,
+    vGridAccordion,
 }

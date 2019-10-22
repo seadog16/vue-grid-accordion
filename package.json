@@ -1,10 +1,16 @@
 {
-    "name": "image-grid-accordion",
-    "version": "0.1.1",
+    "name": "vue-grid-accordion",
+    "author": "Seadog",
+    "version": "0.1.0",
     "description": "基于Vue的栅格手风琴效果",
     "main": "lib/imagegridaccordion.umd.min.js",
-    "keywords": "image grid accordion",
+    "keywords": "vue image grid accordion",
     "private": false,
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/seadog16/vue-grid-accordion.git"
+    },
     "scripts": {
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
