@@ -7,7 +7,7 @@ npm i vue-grid-accordion --save
 ```js
 // main.js
 import VueGridAccordion from 'vue-grid-accordion';
-Vue.use(vGridAccordion);
+Vue.use(VueGridAccordion);
 ```
 ```vue
 // app.vue
