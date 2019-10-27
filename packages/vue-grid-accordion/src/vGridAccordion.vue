@@ -2,16 +2,23 @@
     .gridWrap(
         @mouseleave="leaveHandler"
         :style="{width:width+'px',height:height+'px'}")
-        .img(
-            @mouseenter="() => enterHandler(index)"
+        grid-image(
+            @mouseenter.native="enterHandler(index)"
             v-for="(img, index) in images"
-            :style="style(img, index)")
+            :key="index"
+            :source="img"
+            :show-text="active===index"
+            :transform="transform(index)")
 </template>
 
 <script>
-import TWEEN from '@tweenjs/tween.js';
+import GridImage from './gridImage';
+
 export default {
     name: 'vGridAccordion',
+    components: {
+        GridImage,
+    },
     props: {
         width: {
             type: Number,
@@ -42,6 +49,9 @@ export default {
         return {
             active: null,
             interval: null,
+            wRatio: 2.3,
+            hRatio: 2.6,
+            setTime: null,
         };
     },
     computed: {
@@ -59,53 +69,50 @@ export default {
         }, 3000);
     },
     methods: {
-        style(img, index) {
-            const { width, height, gutter, cols, rows } = this;
-            const wRatio = 2.5;
-            const hRatio = 2.7;
-            const matrix = num => [num % cols, Math.floor(num / cols)];
-            const matrixIndex = matrix(index);
-            const matrixActive = matrix(this.active);
-            let iWidth = (width - gutter * (cols - 1)) / cols;
-            let iHeight = (height - gutter * (rows - 1)) / rows;
-            let iLeft = matrixIndex[0] * (iWidth + gutter);
-            let iTop = matrixIndex[1] * (iHeight + gutter);
+        matrix(num) {
+            return [num % this.cols, Math.floor(num / this.cols)];
+        },
+        transform(i) {
+            const { width: oWidth, height: oHeight, gutter, cols, rows } = this;
+            const matrixIndex = this.matrix(i);
+            const matrixActive = this.matrix(this.active);
+            let width = (oWidth - gutter * (cols - 1)) / cols;
+            let height = (oHeight - gutter * (rows - 1)) / rows;
+            let left = matrixIndex[0] * (width + gutter);
+            let top = matrixIndex[1] * (height + gutter);
 
-            let minWidth = (width - iWidth * wRatio - gutter * (cols - 1)) / (cols - 1);
-            let maxWidth = iWidth * wRatio;
-            let minHeight = (height - iHeight * hRatio - gutter * (rows - 1)) / (rows - 1);
-            let maxHeight = iHeight * hRatio;
-
-            if (this.active !== null) {
+            let minWidth = (oWidth - width * this.wRatio - gutter * (cols - 1)) / (cols - 1);
+            let maxWidth = width * this.wRatio;
+            let minHeight = (oHeight - height * this.hRatio - gutter * (rows - 1)) / (rows - 1);
+            let maxHeight = height * this.hRatio;
+            if (this.active !== null && this.active !== undefined) {
                 if (matrixIndex[0] > matrixActive[0]) {
-                    iWidth = minWidth;
-                    iLeft = (minWidth + gutter) * (matrixIndex[0] - 1) + maxWidth + gutter;
+                    width = minWidth;
+                    left = (minWidth + gutter) * (matrixIndex[0] - 1) + maxWidth + gutter;
                 } else if (matrixIndex[0] < matrixActive[0]) {
-                    iWidth = minWidth;
-                    iLeft = (minWidth + gutter) * matrixIndex[0];
+                    width = minWidth;
+                    left = (minWidth + gutter) * matrixIndex[0];
                 } else {
-                    iWidth = maxWidth;
-                    iLeft = (minWidth + gutter) * matrixIndex[0];
+                    width = maxWidth;
+                    left = (minWidth + gutter) * matrixIndex[0];
                 }
 
                 if (matrixIndex[1] > matrixActive[1]) {
-                    iHeight = minHeight;
-                    iTop = (minHeight + gutter) * (matrixIndex[1] - 1) + maxHeight + gutter;
+                    height = minHeight;
+                    top = (minHeight + gutter) * (matrixIndex[1] - 1) + maxHeight + gutter;
                 } else if (matrixIndex[1] < matrixActive[1]) {
-                    iHeight = minHeight;
-                    iTop = (minHeight + gutter) * matrixIndex[1];
+                    height = minHeight;
+                    top = (minHeight + gutter) * matrixIndex[1];
                 } else {
-                    iHeight = maxHeight;
-                    iTop = (minHeight + gutter) * matrixIndex[1];
+                    height = maxHeight;
+                    top = (minHeight + gutter) * matrixIndex[1];
                 }
-
             }
             return {
-                backgroundImage: `url(${img})`,
-                width: iWidth + 'px',
-                height: iHeight + 'px',
-                left: iLeft + 'px',
-                top: iTop + 'px',
+                left,
+                top,
+                width,
+                height,
             }
         },
         play() {
@@ -123,8 +130,11 @@ export default {
             this.interval = null;
         },
         enterHandler(index) {
-            this.stop();
-            this.active = index;
+            clearTimeout(this.setTime);
+            this.setTime = setTimeout(() => {
+                this.stop();
+                this.active = index;
+            }, 500);
         },
         leaveHandler() {
             this.stop();
@@ -141,11 +151,4 @@ export default {
     width 100%
     height 100%
     position relative
-
-    .img
-        position absolute
-        background-position center
-        transition-duration 500ms
-        transition-timing-function ease-in-out
-        transition-property width, height, left, top
 </style>
