@@ -42,7 +42,7 @@ export default {
         },
         duration: {
             type: Number,
-            default: 2000,
+            default: 5000,
         }
     },
     data() {
