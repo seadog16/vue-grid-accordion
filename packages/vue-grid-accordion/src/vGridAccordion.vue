@@ -64,6 +64,7 @@ export default {
     },
     mounted() {
         setTimeout(() => {
+            if (this.setTime) return;
             this.active = 0;
             this.play();
         }, 3000);

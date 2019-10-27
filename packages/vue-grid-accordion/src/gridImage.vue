@@ -1,9 +1,10 @@
 <template lang="pug">
     .img(
-        :style="style")
+        :style="imgStyle")
         .txt(
-            v-if="showText"
-            :style="source.textStyle") {{source.text}}
+            v-if="source.text && showText"
+            :class="{show}"
+            v-text="source.text")
 </template>
 
 <script>
@@ -14,7 +15,7 @@ export default {
     props: {
         source: {
             type: Object,
-            default: {},
+            default: '',
         },
         transform: {
             type: Object,
@@ -32,12 +33,13 @@ export default {
             w: this.transform.width,
             h: this.transform.height,
             act: false,
+            show: false,
         };
     },
     computed: {
-        style() {
+        imgStyle() {
             return {
-                backgroundImage: `url(${this.source.url})`,
+                backgroundImage: `url(${typeof this.source === 'string' ? this.source : this.source.url})`,
                 left: `${this.l}px`,
                 top: `${this.t}px`,
                 width: `${this.w}px`,
@@ -71,6 +73,7 @@ export default {
                 })
                 .onComplete(() => {
                     this.act = false;
+                    this.show = this.showText;
                 })
                 .start();
             this.animate();
@@ -101,4 +104,15 @@ export default {
     padding 10px 15px
     font-size 13px
     line-height 1.4
+    white-space pre-wrap
+    text-align justify
+    opacity: 0
+    transform translate(0, -10px)
+    transition-duration 300ms
+    transition-property transform, opacity
+    transition-timing-function ease-in
+
+    &.show
+        opacity 1
+        transform translate(0, 0)
 </style>
