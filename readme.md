@@ -9,7 +9,7 @@ npm i vue-grid-accordion --save
 import VueGridAccordion from 'vue-grid-accordion';
 Vue.use(vGridAccordion);
 ```
-```html
+```vue
 // app.vue
 <template>
     <v-grid-accordion
