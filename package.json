@@ -1,7 +1,7 @@
 {
     "name": "vue-grid-accordion",
     "author": "Seadog",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "基于Vue的栅格手风琴效果",
     "main": "lib/imagegridaccordion.umd.min.js",
     "keywords": "vue image grid accordion",
