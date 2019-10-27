@@ -20,8 +20,6 @@
     "dependencies": {
         "@tweenjs/tween.js": "^18.3.1",
         "core-js": "^2.6.5",
-        "lodash.debounce": "^4.0.8",
-        "lodash.throttle": "^4.1.1",
         "vue": "^2.6.10"
     },
     "devDependencies": {
