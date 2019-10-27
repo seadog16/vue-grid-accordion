@@ -6,11 +6,11 @@ npm i vue-grid-accordion --save
 ## 使用
 ```html
 <template>
-    <grid-accordion
+    <v-grid-accordion
         :width="960"
         :height="680"
         :columns="5"
-        :gutter="4"
+        :gutter="6"
         :images="imgs"
         :duration="5000"/>
 </template>
