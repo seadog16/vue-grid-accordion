@@ -4,7 +4,7 @@ npm i vue-grid-accordion --save
 ```
 
 ## 使用
-```html
+```js
 // main.js
 import VueGridAccordion from 'vue-grid-accordion';
 Vue.use(vGridAccordion);
